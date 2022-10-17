@@ -122,9 +122,9 @@ double retorno(double* q, double* media,int* n,double* a){
 	int m,u;
 	if(*media>0) m = 1;
 	else m = -1;
-	if(q>0) u = 1;
+	if(*q>0) u = 1;
 	else u = -1;
-	if(fabs(*q-*media)<0.000001) return *q;
+	if((m==u) && (fabs(*q)-fabs(*media)<0.00001)) return *q;
     if((m**media>u**q)&&(u==m)){
         *n = *n+1;
         return *media;
@@ -168,7 +168,7 @@ double *process(double* antes,double*a,int*L,int*linkagem,int* N){
 	    if((t+1)%2!=0) n = interactions(antes,depois,a,L,linkagem,N); // para i+1 ímpar
 		else n = interactions(depois,antes,a,L,linkagem,N); // para i+1 par
 		t++;
-		if(n<0.5**N) break;
+		if(n<0.3**N) break;
 		else J = 0;
 		if(J==100) break;
 	}
